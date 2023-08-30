@@ -1,0 +1,263 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #282c34;
+}
+
+h1 {
+    text-align: center;
+    color: white;
+
+}
+h2{
+    text-align: center;
+    color: white;  
+  
+}
+.play-form {
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+.play-form label,
+.play-list h2 {
+    font-weight: bold;
+}
+
+.play-form input {
+    margin: 5px;
+    padding: 5px;
+}
+
+.play-list {
+    margin-top: 20px;
+}
+
+#play-history {
+    list-style: none;
+    padding: 0;
+}
+
+#play-history li {
+    margin-bottom: 10px;
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 100%;
+    border-radius: 10px;
+    background-color: #171717;
+    color: white;
+    text-align: center;
+   
+  }
+  
+  .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+  
+  .container {
+    padding: 2px 16px;
+  }
+  #progressbar {
+	margin-bottom: 30px;
+	overflow: hidden;
+	/*CSS counters to number the steps*/
+	counter-reset: step;
+    width: 100%;
+	margin: 50px auto;
+	text-align: center;
+	position: relative;
+}
+#progressbar li {
+	list-style-type: none;
+	color: white;
+	text-transform: uppercase;
+	font-size: 9px;
+	width: 33.33%;
+	float: left;
+	position: relative;
+}
+#progressbar li:before {
+	content: counter(step);
+	counter-increment: step;
+	width: 20px;
+	line-height: 20px;
+	display: block;
+	font-size: 10px;
+	color: #333;
+	background: white;
+	border-radius: 3px;
+	margin: 0 auto 5px auto;
+}
+/*progressbar connectors*/
+#progressbar li:after {
+	content: '';
+	width: 100%;
+	height: 2px;
+	background: white;
+	position: absolute;
+	left: -50%;
+	top: 9px;
+	z-index: -1; /*put it behind the numbers*/
+}
+#progressbar li:first-child:after {
+	/*connector not needed before the first step*/
+	content: none; 
+}
+/*marking active/completed steps green*/
+/*The number of the step and the connector before it = green*/
+#progressbar li.active:before,  #progressbar li.active:after{
+	background: #27AE60;
+	color: white;
+}
+.distanceInput {
+    border-radius: 8px;
+    width: 200px;
+    height: 30px;
+}
+.nextButton {
+    border-radius: 8px;
+    width: 200px;
+    height: 30px;
+    background: #171717;
+    color: white;
+    border: none;
+    font-size: 30px;
+}
+
+
+
+/* progress bar */
+
+.squares {
+	position: relative;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+.boxes {
+	position: relative;
+	top: -100%;
+	left: 50%;
+	width: 90%;
+	max-width: 790px;
+	height: 180px;
+	font-family: "Open Sans", sans-serif;
+
+	transform: translate(-50%, 5%); /* this is where you can move it */
+
+}
+.box {
+	position: relative;
+	display: flex;
+	align-items: center;
+	flex-direction: row;
+	background: #fff;
+	width: 100%;
+	height: 100%;
+	border-radius: 20px;
+	box-shadow: 40px 0 65px rgba(212, 197, 186, 0.4);
+	padding: 0 80px;
+	box-sizing: border-box;
+	opacity: 0;
+	transform-origin: center;
+	transform: scale(1.2, 1.2);
+}
+.box:nth-child(1), .box:nth-child(2) {
+	position: absolute;
+}
+
+.box:nth-child(2) {
+	left: 2%;
+	width: 96%;
+}
+.progress {
+	position: relative;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	width: 100%;
+}
+.bar {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	background: #e8dfd8;
+	width: 100%;
+	height: 3px;
+	border-radius: 10px;
+	transform: translate(-50%, -50%);
+	overflow: hidden;
+}
+.bar__fill {
+	display: block;
+	background: #49ce85;
+	height: 100%;
+}
+.point {
+	position: relative;
+	color: #000000;
+	cursor: pointer;
+}
+.point:before {
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 120px;
+	height: 120px;
+	border-radius: 100%;
+	transform: translate(-50%, -50%);
+	transition: 0.3s ease;
+}
+.show-radius .point:before {
+	background: rgba(0, 0, 0, 0.1);
+}
+.point--complete, .point--active {
+	color: #49ce85;
+}
+.bullet {
+	z-index: 1;
+	position: relative;
+	background: #49ce85;
+	width: 8px;
+	height: 8px;
+	border-radius: 100%;
+	transition: 0.3s ease;
+}
+.point--complete .bullet, .point--active .bullet {
+	background: #fff;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 0 0 6px #49ce85;;
+}
+.point--active .bullet {
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 0 0 10px #adf55a;
+}
+.label {
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	margin: 20px 0 0 0;
+	font-size: 0.75rem;
+	font-weight: 600;
+	text-transform: uppercase;
+	transform: translate(-50%, 0);
+}
+.radius-toggle {
+	position: absolute;
+	top: 20px;
+	left: 20px;
+	display: block;
+	background: #fff;
+	border: 0;
+	border-radius: 4px;
+	box-shadow: 40px 0 65px rgba(212, 197, 186, 0.4);
+	padding: 10px;
+	color: #49ce85;
+	font-size: 0.75rem;
+	font-weight: 600;
+	text-transform: uppercase;
+}
